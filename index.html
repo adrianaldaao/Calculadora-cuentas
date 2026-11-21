@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Cuentas</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#171A1F">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Cuentas">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#171A1F;--bg2:#1D2229;--card:#222831;--el:#292F38;--bd:#2F3640;--tx:#E8EAED;--t2:#A3ABB5;--ok:#91B5A8;--warn:#C18B70;--err:#D08A8A;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 Inter,system-ui,sans-serif;padding-bottom:84px}
+#app{max-width:560px;margin:0 auto;padding:20px 16px;display:flex;flex-direction:column;gap:12px}
+.t{font-variant-numeric:tabular-nums}
+.mu{color:var(--t2)}.s{font-size:13px}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px}
+.el{background:var(--el);padding:20px}
+.l{font-size:13px;color:var(--t2);margin:0 0 10px;font-weight:500}
+.pad{margin:8px 4px 0}
+.r{display:flex;align-items:center;gap:12px}.sp{justify-content:space-between}
+.h{font-size:20px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.big{font-size:48px;font-weight:600;letter-spacing:-.03em;line-height:1.1;margin-top:12px}
+.av{width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;color:#171A1F;flex:none}
+button,input,textarea{font:inherit;color:var(--tx)}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--ok);outline-offset:2px}
+input,textarea{width:100%;min-height:46px;background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:0 14px}
+textarea{padding:12px 14px;min-height:96px;font-size:12px}
+input[type=date]{width:auto;min-height:40px;font-size:15px}
+.f{display:flex;flex-direction:column;gap:12px}
+.seg{display:flex;gap:4px;background:var(--bg2);padding:4px;border-radius:14px;border:1px solid var(--bd)}
+.seg button{flex:1;min-height:44px;border:0;border-radius:10px;background:transparent;color:var(--t2);font-weight:500}
+.seg .on{background:var(--el);color:var(--tx)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--bd);background:transparent;color:var(--t2)}
+.chip.on{border-color:var(--k);color:var(--tx);background:var(--bg2)}
+.b{min-height:48px;padding:0 18px;border-radius:12px;border:1px solid #3A424E;background:var(--el);font-weight:500}
+.bp{background:var(--ok);border-color:var(--ok);color:#171A1F;font-weight:600}
+.w{width:100%}
+.m{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid var(--bd);gap:8px}
+.m:first-child{border-top:0}
+.rb{display:flex;align-items:center;gap:12px;flex:1;min-width:0;min-height:44px;background:transparent;border:0;padding:0;text-align:left;cursor:pointer}
+.ed{background:var(--bg2);border-radius:10px;margin:0 -8px;padding-left:8px;padding-right:8px}
+.x{min-height:44px;min-width:44px;border:0;background:transparent;color:var(--t2);border-radius:10px;font-size:13px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px}
+.g{display:grid;grid-template-columns:1fr auto;gap:4px 12px;margin:10px 0;color:var(--t2);font-size:14px}
+.g span:nth-child(even){text-align:right;color:var(--tx)}
+.res{border-top:1px solid var(--bd);padding-top:10px;font-weight:500}
+.err{color:var(--err);font-size:13px}
+details>summary{list-style:none;cursor:pointer}details>summary::-webkit-details-marker{display:none}
+details .c{margin-top:10px}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--bg2);border-top:1px solid var(--bd);padding:6px 8px calc(8px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;min-height:48px;border:0;background:transparent;color:var(--t2);font-size:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+nav .on{color:var(--ok)}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<nav aria-label="Principal">
+<button data-a="tab" data-v="cuenta"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h12l-3-3M17 16H5l3 3"/></svg>Cuenta</button>
+<button data-a="tab" data-v="hist"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Historial</button>
+<button data-a="tab" data-v="aj"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>Ajustes</button>
+</nav>
+<script>
+const KEY='cuentas-v1',COLORS=['#91B5A8','#C18B70','#A4A982','#B59F7A','#8FA8A0','#B58E8E'];
+const P={adri:{n:'Adri',c:'#91A9C4'},chiara:{n:'Chiara',c:'#A98A9D'}};
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const fd=s=>s?s.slice(8,10)+'/'+s.slice(5,7)+'/'+s.slice(2,4):'';
+const DEF=[['c0','Supermercado','#91B5A8'],['c1','Gato','#C18B70'],['c2','Hogar','#A4A982'],['c3','Ocio','#B59F7A'],['c7','Compras','#8FA8A0'],['c10','Regalos','#B58E8E']];
+const def=()=>({v:2,cats:DEF.map(([id,name,color])=>({id,name,color})),cur:{date:today(),exp:[]},closed:[],seq:0,form:{payer:'adri',cat:'c0',kind:'shared',ben:'adri'}});
+function migrate(o){const used=id=>o.cur.exp.some(e=>e.cat===id)||o.closed.some(c=>c.exp.some(e=>e.cat===id));
+if(!(o.v>=2)){o.cats=o.cats.filter(c=>!['c4','c5','c6','c8','c9'].includes(c.id)||used(c.id));for(const[id,name,color]of DEF){const c=o.cats.find(x=>x.id===id);if(c)c.color=color;else if(!o.cats.some(x=>x.name.toLowerCase()===name.toLowerCase()))o.cats.push({id,name,color})}o.v=2}
+if(!o.form)o.form={payer:'adri',cat:'c0',kind:'shared',ben:'adri'};if(!o.cats.some(c=>c.id===o.form.cat))o.form.cat=o.cats[0].id;return o}
+function load(){try{const r=localStorage.getItem(KEY);if(r)return migrate(JSON.parse(r))}catch(e){}return def()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+let S=load(),tab='cuenta',amt='',con='',ncat='',bk='',err='',armed='',editing=null,newc=false;
+//ENG
+function settle(exp){const m={},tot={paid:{adri:0,chiara:0},took:{adri:0,chiara:0}};
+for(const e of exp){const c=m[e.cat]||(m[e.cat]={cat:e.cat,total:0,paid:{adri:0,chiara:0},took:{adri:0,chiara:0},sp:{adri:0,chiara:0},sh:0});c.total+=e.cents;c.paid[e.payer]+=e.cents;if(e.kind==='individual')c.took[e.ben]+=e.cents;else{c.sh+=e.cents;c.sp[e.payer]+=e.cents}}
+for(const c of Object.values(m)){const h=Math.floor(c.sh/2);c.took.adri+=h;c.took.chiara+=h;if(c.sh%2)c.took[c.sp.adri>c.sp.chiara?'adri':'chiara']+=1;for(const k of['adri','chiara']){tot.paid[k]+=c.paid[k];tot.took[k]+=c.took[k]}}
+const list=Object.values(m).sort((a,b)=>a.cat<b.cat?-1:1);const net=tot.paid.adri-tot.took.adri;
+if(tot.paid.adri+tot.paid.chiara!==tot.took.adri+tot.took.chiara)throw new Error('Descuadre');
+return{list,net,tot}}
+function parseAmt(s){const t=s.replace(/\s/g,'').replace(/,/g,'.');if(!/^[+-]?\d+(\.\d+)?([+-]\d+(\.\d+)?)*$/.test(t))return null;let c=0;for(const x of t.match(/[+-]?\d+(\.\d+)?/g))c+=Math.round(parseFloat(x)*100);return c>0?c:null}
+//END
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=c=>(c/100).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+const av=k=>`<span class="av" style="background:${P[k].c}" aria-hidden="true">${P[k].n[0]}</span>`;
+const cat=id=>S.cats.find(c=>c.id===id)||{name:'Categoría eliminada',color:'#737D89'};
+const tr=n=>n>0?{f:'chiara',t:'adri',a:n}:n<0?{f:'adri',t:'chiara',a:-n}:null;
+function debt(res,n){if(!n)return`<p class="l">Liquidación</p><div class="mu">Añade el primer gasto y aquí verás quién transfiere a quién.</div>`;
+const t=tr(res.net);if(!t)return`<p class="l">Liquidación</p><div class="h">Estáis a mano</div><div class="mu s">${n} gasto${n>1?'s':''} sin diferencia</div>`;
+return`<p class="l">Liquidación pendiente</p><div class="r">${av(t.f)}${av(t.t)}<span>${P[t.f].n} transfiere a ${P[t.t].n}</span></div><div class="big t">${fmt(t.a)}</div><div class="mu s">Un solo pago por ${res.list.length} categoría${res.list.length>1?'s':''} y ${n} gasto${n>1?'s':''}</div>`}
+function detail(res){return res.list.map(c=>{const k=cat(c.cat),b=c.paid.adri-c.took.adri;const r=b===0?'A mano':b>0?`Chiara debe ${fmt(b)} a Adri`:`Adri debe ${fmt(-b)} a Chiara`;
+return`<div class="c"><div class="r sp"><b><i class="dot" style="background:${k.color}"></i>${esc(k.name)}</b><span class="t">${fmt(c.total)}</span></div><div class="g t"><span>Adri pagó</span><span>${fmt(c.paid.adri)}</span><span>Chiara pagó</span><span>${fmt(c.paid.chiara)}</span><span>Asume Adri</span><span>${fmt(c.took.adri)}</span><span>Asume Chiara</span><span>${fmt(c.took.chiara)}</span></div><div class="res">${r}</div></div>`}).join('')+`<div class="c"><div class="g t" style="margin:0"><span>Gasto total</span><span>${fmt(res.tot.paid.adri+res.tot.paid.chiara)}</span><span>Adri pagó</span><span>${fmt(res.tot.paid.adri)}</span><span>Chiara pagó</span><span>${fmt(res.tot.paid.chiara)}</span></div></div>`}
+const seg=(a,cur,items)=>`<div class="seg">${items.map(([v,n])=>`<button data-a="${a}" data-v="${v}" class="${cur===v?'on':''}">${n}</button>`).join('')}</div>`;
+function vCuenta(){const ex=S.cur.exp,res=settle(ex),f=S.form,last=S.closed[S.closed.length-1],ppl=[['adri','Adri'],['chiara','Chiara']];
+return`<div><div class="mu s">Gastos desde el último cierre hasta el</div><div class="h">${last?fd(last.date):'inicio'} hasta <input id="dt" type="date" value="${S.cur.date}" aria-label="Fecha de cierre"></div></div>
+<div class="c el">${debt(res,ex.length)}</div>
+<div class="c f">${editing?'<div class="l" style="margin:0">Editando un gasto</div>':''}<div class="seg" role="group" aria-label="Quién pagó">${ppl.map(([k,n])=>`<button data-a="payer" data-v="${k}" class="${f.payer===k?'on':''}">${n} pagó</button>`).join('')}</div>
+<input id="amt" inputmode="decimal" autocomplete="off" placeholder="Importe, admite 57,4-7,3" value="${esc(amt)}" aria-label="Importe">
+<input id="con" autocomplete="off" placeholder="Concepto (opcional)" value="${esc(con)}" aria-label="Concepto">
+<div class="chips" role="group" aria-label="Categoría">${S.cats.map(c=>`<button data-a="cat" data-v="${c.id}" class="chip ${f.cat===c.id?'on':''}" style="--k:${c.color}">${esc(c.name)}</button>`).join('')}<button data-a="newc" class="chip">+ Nueva</button></div>${newc?`<div class="r"><input id="ncat" autocomplete="off" placeholder="Nombre de la categoría" value="${esc(ncat)}" aria-label="Nueva categoría"><button class="b" data-a="addcat">Crear</button></div>`:''}
+${seg('kind',f.kind,[['shared','Compartido 50/50'],['individual','Individual']])}
+${f.kind==='individual'?seg('ben',f.ben,ppl.map(([k,n])=>[k,'Lo asume '+n])):''}
+${err?`<div class="err" role="alert">${err}</div>`:''}<button class="b bp" data-a="add">${editing?'Guardar cambios':'Añadir gasto'}</button>${editing?'<button class="b" data-a="cancel">Cancelar edición</button>':''}</div>
+${ex.length?`<div class="c" style="padding:4px 16px">${[...ex].reverse().map(e=>`<div class="m${editing===e.id?' ed':''}"><button class="rb" data-a="edit" data-v="${e.id}" aria-label="Editar gasto">${av(e.payer)}<span><span style="display:block">${esc(e.con||cat(e.cat).name)}</span><span class="mu s" style="display:block">${esc(cat(e.cat).name)}${e.kind==='individual'?', lo asume '+P[e.ben].n:''}</span></span></button><div class="r" style="gap:4px"><span class="t">${fmt(e.cents)}</span><button class="x" data-a="del" data-v="${e.id}" aria-label="Borrar gasto">${armed==='del'+e.id?'¿Borrar?':'✕'}</button></div></div>`).join('')}</div>
+<p class="l pad">Detalle por categoría</p>${detail(res)}
+<button class="b w ${armed==='close'?'bp':''}" data-a="close">${armed==='close'?'Pulsa otra vez para cerrar':'Cerrar cuenta del '+fd(S.cur.date)}</button>`:''}`}
+function vHist(){if(!S.closed.length)return`<div class="h">Historial</div><div class="c mu">Aún no hay cuentas cerradas.</div>`;
+return`<div class="h">Historial</div>`+[...S.closed].reverse().map(c=>{const t=tr(c.res.net);return`<details><summary class="c r sp"><div><div>${c.from?fd(c.from)+' hasta ':'Hasta '}${fd(c.date)}</div><div class="mu s">${t?P[t.f].n+' transfirió a '+P[t.t].n:'A mano'}</div></div><b class="t">${t?fmt(t.a):''}</b></summary>${detail(c.res)}</details>`}).join('')}
+function vAj(){const used=id=>S.cur.exp.some(e=>e.cat===id)||S.closed.some(c=>c.exp.some(e=>e.cat===id));
+return`<div class="h">Ajustes</div><div class="c" style="padding:4px 16px"><p class="l" style="margin:12px 0 0">Categorías</p>${S.cats.map(c=>`<div class="m"><span><i class="dot" style="background:${c.color}"></i>${esc(c.name)}</span>${used(c.id)?'<span class="mu s">en uso</span>':`<button class="x" data-a="delcat" data-v="${c.id}" aria-label="Eliminar categoría">${armed==='cat'+c.id?'¿Eliminar?':'✕'}</button>`}</div>`).join('')}</div>
+<div class="c f"><input id="ncat" placeholder="Nueva categoría" value="${esc(ncat)}" aria-label="Nueva categoría"><button class="b" data-a="addcat">Añadir categoría</button></div>
+<div class="c f"><p class="l" style="margin:0">Copia de seguridad</p><div class="mu s">Los datos viven en este navegador. Copia el texto y guárdalo en tus notas por si borras los datos del navegador.</div><textarea id="bk" aria-label="Copia de seguridad">${esc(bk)}</textarea><div class="r"><button class="b" data-a="copy" style="flex:1">Copiar copia</button><button class="b" data-a="restore" style="flex:1">Restaurar</button></div>${err?`<div class="err" role="alert">${err}</div>`:''}</div>`}
+function render(){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===tab));$('app').innerHTML=({cuenta:vCuenta,hist:vHist,aj:vAj})[tab]()}
+function act(a,v){const k=armed;armed='';err='';const f=S.form;
+if(a==='tab'){tab=v;if(editing){editing=null;amt='';con=''}scrollTo(0,0)}
+else if(a==='payer'||a==='kind'||a==='ben'){f[a]=v;if(a==='payer'&&f.kind==='shared')f.ben=v;save()}
+else if(a==='cat'){f.cat=v;save()}
+else if(a==='add'){const c=parseAmt(amt);if(!c)err='Escribe un importe válido, por ejemplo 12,50 o 57,4-7,3.';else{const x={id:editing||++S.seq,payer:f.payer,cents:c,cat:f.cat,kind:f.kind,ben:f.kind==='individual'?f.ben:null,con:con.trim()};if(editing)S.cur.exp=S.cur.exp.map(e=>e.id===editing?x:e);else S.cur.exp.push(x);editing=null;amt='';con='';save()}}
+else if(a==='edit'){const e=S.cur.exp.find(x=>x.id==v);if(e){editing=e.id;Object.assign(f,{payer:e.payer,cat:e.cat,kind:e.kind,ben:e.ben||e.payer});amt=(e.cents/100).toFixed(2).replace('.',',');con=e.con||''}scrollTo(0,0)}
+else if(a==='cancel'){editing=null;amt='';con=''}
+else if(a==='newc'){newc=!newc}
+else if(a==='del'){if(k!=='del'+v){armed='del'+v}else{S.cur.exp=S.cur.exp.filter(e=>e.id!=v);if(editing==v){editing=null;amt='';con=''}save()}}
+else if(a==='close'){if(k!=='close')armed='close';else{const last=S.closed[S.closed.length-1];S.closed.push({from:last?last.date:'',date:S.cur.date,exp:S.cur.exp,res:settle(S.cur.exp)});S.cur={date:today(),exp:[]};editing=null;tab='hist';save();scrollTo(0,0)}}
+else if(a==='addcat'){const n=ncat.trim();if(n&&!S.cats.some(c=>c.name.toLowerCase()===n.toLowerCase())){const id='c'+Date.now();S.cats.push({id,name:n,color:COLORS[S.cats.length%6]});ncat='';if(tab==='cuenta'){f.cat=id;newc=false}save()}else err='Escribe un nombre nuevo.'}
+else if(a==='delcat'){if(k!=='cat'+v)armed='cat'+v;else{S.cats=S.cats.filter(c=>c.id!==v);if(f.cat===v)f.cat=S.cats[0]?S.cats[0].id:'';save()}}
+else if(a==='copy'){bk=JSON.stringify(S);render();const t=$('bk');t.select();try{navigator.clipboard.writeText(bk)}catch(e){try{document.execCommand('copy')}catch(x){}};return}
+else if(a==='restore'){try{const o=JSON.parse(bk);if(!Array.isArray(o.cats)||!o.cur||!Array.isArray(o.closed))throw 0;S=migrate(o);bk='';save();tab='cuenta'}catch(e){err='El texto no es una copia válida.'}}
+render();if(((a==='add'&&!err)||a==='edit')&&$('amt'))$('amt').focus()}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b)act(b.dataset.a,b.dataset.v)});
+document.addEventListener('input',e=>{const t=e.target;if(t.id==='amt')amt=t.value;else if(t.id==='con')con=t.value;else if(t.id==='ncat')ncat=t.value;else if(t.id==='bk')bk=t.value});
+document.addEventListener('change',e=>{if(e.target.id==='dt'&&e.target.value){S.cur.date=e.target.value;save();render()}});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'){if(e.target.id==='amt'||e.target.id==='con')act('add');else if(e.target.id==='ncat')act('addcat')}});
+render();
+</script>
+</body>
+</html>
